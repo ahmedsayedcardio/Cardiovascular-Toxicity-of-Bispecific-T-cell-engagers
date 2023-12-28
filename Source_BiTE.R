@@ -30,7 +30,7 @@ create_filter_inds <- function(indication_df) {
 source("Import_by_drug.R")
 
 #(Re)Set folder for analyses
-folder <- "C:/Ahmed's Stuff/ResearchStuff/BITE_Cardiotoxicity/Manuscript/JACC Submission"
+folder <- folder
 
 
 #Create columns for drug classes
