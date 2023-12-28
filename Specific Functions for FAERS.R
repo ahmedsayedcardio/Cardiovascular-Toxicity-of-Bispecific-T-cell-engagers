@@ -160,14 +160,14 @@ read_smq <- function(filename) {
 
   
   #Determine N of rows to skip (some files have one extra row to skip)
-  n_to_skip <- readxl::read_xlsx(path = paste0("C:/Ahmed's Stuff/ResearchStuff/FAERS/Meddra Terms/",
+  n_to_skip <- readxl::read_xlsx(path = paste0(meddra_folder,
                                                filename, ".xlsx")) %>%
     tibble::rownames_to_column() %>%
     filter(...3 == "English" | ...2 == "English" ) %>%
     spull(rowname) %>% as.numeric %>% min
   
   #Read file
-  f <- readxl::read_xlsx(path = paste0("C:/Ahmed's Stuff/ResearchStuff/FAERS/Meddra Terms/",
+  f <- readxl::read_xlsx(path = paste0(meddra_folder,
                            filename, ".xlsx"),
                          skip = n_to_skip
                     )
@@ -186,7 +186,7 @@ read_smq <- function(filename) {
 #Get official name of SMQ term
 smq_term <- function(varname, filename) {
 
-  term <- read_xlsx(path = paste0("C:/Ahmed's Stuff/ResearchStuff/FAERS/Meddra Terms/",
+  term <- read_xlsx(path = paste0(meddra_folder,
                                                filename, ".xlsx")) %>%
     filter(if_all(1, ~ . %>% str_detect("English"))) %>%
     spull(1) %>%
@@ -200,7 +200,7 @@ smq_term <- function(varname, filename) {
 
 nonsmq_term <- function(varname, filename) {
   
-  term <- readxl::read_xlsx(path = paste0("C:/Ahmed's Stuff/ResearchStuff/FAERS/Meddra Terms/",
+  term <- readxl::read_xlsx(path = paste0(meddra_folder,
                                             filename, ".xlsx"), skip = 3) %>% 
     clean_names %>%
     spull(english) %>%
@@ -225,7 +225,7 @@ toolong_terms <- function(varname, term) {
 read_nonsmq <- function(filename) {
   
   #Read file
-  f <- readxl::read_xlsx(path = paste0("C:/Ahmed's Stuff/ResearchStuff/FAERS/Meddra Terms/",
+  f <- readxl::read_xlsx(path = paste0(meddra_folder,
                                        filename, ".xlsx"),
                          skip = 3
   )
